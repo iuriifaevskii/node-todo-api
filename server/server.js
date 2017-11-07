@@ -149,7 +149,7 @@ app.get('/users/me', authenticate, (req, res) => {
 app.post('/users/login', (req, res) => {
     var body = _.pick(req.body, ['email', 'password']);
     User.findByCredentials(body.email, body.password).then((user) => {
-        user.generateAu$2a$10$SJDBD9HY9ul4DD.wG.oe6.aywM.amLyCz2UmZSTSZ5npq2dACRmyGthToken().then((token) => {
+        user.generateAuthToken().then((token) => {
             res.header('x-auth', token).send(user);
         });
     }).catch((e) => {
